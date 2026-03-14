@@ -1,4 +1,9 @@
 {
-    "id": "apache-config",
-    "name": "Apache configuration changes"
+  "id": "apache-config",
+  "version": "1.0.0",
+  "name": "Apache Config",
+  "description": "Configuração do Apache",
+  "options": {
+    // opções da extensão
+  }
 }
