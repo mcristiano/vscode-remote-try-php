@@ -11,7 +11,7 @@
             "userGid": "1000",
             "upgradePackages": "true"
         },
-        "./local-features/apache-config": "latest",
+        "./local-features/apache-config": {} ,
         "ghcr.io/devcontainers/features/node:1": "none",
         "ghcr.io/devcontainers/features/git:1": {
             "version": "latest",
