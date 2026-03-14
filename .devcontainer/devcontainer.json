@@ -1,42 +1,54 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/php
 {
-	"name": "PHP",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/php:1-8.3",
-	
-	"features": {
-		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
-	},
-	
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
+    "build": {
+        "dockerfile": "./Dockerfile",
+        "context": "."
+    },
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "installZsh": "true",
+            "username": "vscode",
+            "userUid": "1000",
+            "userGid": "1000",
+            "upgradePackages": "true"
+        },
+        "./local-features/apache-config": "latest",
+        "ghcr.io/devcontainers/features/node:1": "none",
+        "ghcr.io/devcontainers/features/git:1": {
+            "version": "latest",
+            "ppa": "false"
+        }
+    },
+    "overrideFeatureInstallOrder": [
+        "ghcr.io/devcontainers/features/common-utils"
+    ],
+    // Configure tool-specific properties.
+    "customizations": {
+        // Configure properties specific to VS Code.
+        "vscode": {
+            // Set *default* container specific settings.json values on container create.
+            "settings": {
+                "github.copilot.chat.codeGeneration.instructions": [
+                    {
+                        "text": "This dev container includes `php` (with `xdebug`), `pecl`, `composer` pre-installed and available on the `PATH`, along with PHP language extensions for PHP development."
+                    }
+                ],
+                "php.validate.executablePath": "/usr/local/bin/php"
+            },
+            // Add the IDs of extensions you want installed when the container is created.
+            "extensions": [
+                "xdebug.php-debug",
+                "bmewburn.vscode-intelephense-client",
+                "mrmlnc.vscode-apache"
+            ]
+        }
+    },
+    // Use 'forwardPorts' to make a list of ports inside the container available locally.
+    // "forwardPorts": [
+    //     8080
+    // ],
+    // Use 'postCreateCommand' to run commands after the container is created.
+    // "postCreateCommand": "sudo chmod a+x \"$(pwd)\" && sudo rm -rf /var/www/html && sudo ln -s \"$(pwd)\" /var/www/html"
 
-	// Configure tool-specific properties.
-	"customizations": {
-		// Configure properties specific to VS Code.
-		"vscode": {
-			"settings": {},
-			"extensions": [
-				"streetsidesoftware.code-spell-checker"
-			]
-		}
-	},
-
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [8000],
-
-	// Use 'portsAttributes' to set default properties for specific forwarded ports. More info: https://code.visualstudio.com/docs/remote/devcontainerjson-reference.
-	"portsAttributes": {
-		"8000": {
-			"label": "Hello Remote World",
-			"onAutoForward": "notify"
-		}
-	}
-
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "sudo chmod a+x \"$(pwd)\" && sudo rm -rf /var/www/html && sudo ln -s \"$(pwd)\" /var/www/html"
-
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
+    // Set `remoteUser` to `root` to connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+    "remoteUser": "vscode"
 }
