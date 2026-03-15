@@ -19,7 +19,11 @@
         }
     },
     "overrideFeatureInstallOrder": [
-        "ghcr.io/devcontainers/features/common-utils"
+        "ghcr.io/devcontainers/features/common-utils",
+
+        "./local-features/apache-config" 
+
+        
     ],
     // Configure tool-specific properties.
     "customizations": {
