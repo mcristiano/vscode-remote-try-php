@@ -1,4 +1,4 @@
-ARG VARIANT=8.5-apache-trixie
+ARG VARIANT=8.4-apache-bookworm
 FROM php:${VARIANT}
 
 # Install xdebug(3.5.0)
